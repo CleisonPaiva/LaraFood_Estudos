@@ -15,15 +15,12 @@
         </div>
         <div class="card-body">
             <ul class="list-group">
-                <li class="list-group-item"><strong>Nome: </strong>{{$plan->name}}</li>
-                <li class="list-group-item"><strong>URL: </strong>{{$plan->url}}</li>
-                <li class="list-group-item"><strong>Preço: </strong>R${{ number_format($plan->price,2,',','.')}}</li>
-                <li class="list-group-item"><strong>Descrição: </strong>{{$plan->description}}</li>
+                <li class="list-group-item"><strong>Nome: </strong>{{$detail->name}}</li>
+
             </ul>
 
-            @include('admin.includes.alerts')
 
-            <form class="form" action="{{route('plans.destroy',$plan->id)}}" method="post">
+            <form class="form" action="{{route('details.destroy',[$plan->url,$detail->id])}}" method="post">
                 @csrf
                 @method('DELETE')
                 <div class="form-group">
@@ -32,10 +29,11 @@
             </form>
         </div>
         <div class="card-footer">
-            <a href="{{route('plans.index')}}" class="btn btn-dark">Voltar</a>
+            <a href="{{route('details.index',$plan->url)}}" class="btn btn-dark">Voltar</a>
         </div>
     </div>
 
 
 
 @stop
+

@@ -9,15 +9,16 @@
         <li class="breadcrumb-item "><a href="{{route('plans.show',$plan->url)}}">{{$plan->name}}</a></li>
         <li class="breadcrumb-item"><a href="{{route('details.index',$plan->url)}}" class="active">Detalhes</a></li>
     </ol>
-    <h1>Detalhes do Plano {{$plan->name}} <a href="#" class="btn btn-dark" ><i class="fas fa-plus"></i> Novo Plano</a> </h1>
+    <h1>Detalhes do Plano {{$plan->name}} <a href="{{route('details.create',$plan->url)}}" class="btn btn-dark" ><i class="fas fa-plus"></i> Novo Detalhe</a> </h1>
 @stop
 
 @section('content')
-    <p>Listagem dos Planos.</p>
+    <p>Listagem dos Detalhes.</p>
 
     <div class="card">
 
         <div class="card-body">
+            @include('admin.includes.alerts')
             <table class="table table-condensed">
                 <thead>
                 <tr>
@@ -35,8 +36,8 @@
 
                         <td style="width: 10px">
 
-                            <a href="{{route('plans.edit',$plan->url)}}" class="btn btn-success"><i class="far fa-edit"></i> Editar</a>
-                            <a href="{{route('plans.show',$plan->url)}}" class="btn btn-warning"><i class="fas fa-eye"></i> Exibir</a>
+                            <a href="{{route('details.edit',[$plan->url,$detail->id])}}" class="btn btn-success"><i class="far fa-edit"></i> Editar</a>
+                            <a href="{{route('details.show',[$plan->url,$detail->id])}}" class="btn btn-warning"><i class="fas fa-eye"></i> Exibir</a>
                         </td>
                     </tr>
                 @endforeach
@@ -46,6 +47,7 @@
             </table>
         </div>
         <div class="card-footer">
+            <a href="{{route('plans.index',)}}" class="btn btn-dark">Voltar</a>
             {{--Paginação,não deixa perder o filtro caso mude a pagina--}}
             @if(isset($filters))
                 {{$details->appends($filters)->links()}}
