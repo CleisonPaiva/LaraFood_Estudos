@@ -2,18 +2,29 @@
 
 use App\Http\Controllers\ACL\PermissionController;
 use App\Http\Controllers\ACL\PermissionProfileController;
+use App\Http\Controllers\ACL\ProfilePermissionController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\ACL\ProfileController;
 
 
 use Illuminate\Support\Facades\Route;
+
+
 /**
  * Route Permissions xProfile
  * */
-Route::get('profile/{id}/permissions/create',[PermissionProfileController::class,'permissionsAvailable'])->name('profiles.permissions.available');
+Route::get('profile/{id}/permissions/{idPermission}/detach',[PermissionProfileController::class,'detachPermissionProfile'])->name('profiles.permissions.detach');
+Route::any('profile/{id}/permissions/create',[PermissionProfileController::class,'permissionsAvailable'])->name('profiles.permissions.available');
 Route::post('profile/{id}/permissions/store',[PermissionProfileController::class,'attachPermissionProfile'])->name('profiles.permissions.attach');
 Route::get('profile/{id}/permissions',[PermissionProfileController::class,'permissions'])->name('profiles.permissions');
+
+
+/**
+ *  Route  Profile x Permissions
+ * */
+Route::get('permissions/{id}/profile/{idProfile}/detach',[PermissionProfileController::class,'detachProfilePermission'])->name('permissions.profiles.detach');
+Route::get('permissions/{id}/profile',[PermissionProfileController::class,'profiles'])->name('permission.profiles');
 //Route::resource('profiles/permissions',PermissionController::class);
 
 

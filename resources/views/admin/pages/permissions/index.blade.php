@@ -30,7 +30,7 @@
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th style="width:200px">Ações</th>
+                    <th style="width:250px">Ações</th>
                 </tr>
 
                 </thead>
@@ -41,8 +41,10 @@
                         <td>{{$permission->name}}</td>
 
                         <td style="width: 10px">
+{{--                            Permissoes de usuarios--}}
                             <a href="{{route('permissions.edit',$permission->id)}}" class="btn btn-success"><i class="far fa-edit"></i> Editar</a>
                             <a href="{{route('permissions.show',$permission->id)}}" class="btn btn-warning"><i class="fas fa-eye"></i> Exibir</a>
+                            <a href="{{route('permission.profiles',$permission->id)}}" class="btn btn-outline-info"><i class="fas fa-users"></i></a>
                         </td>
                     </tr>
                 @endforeach

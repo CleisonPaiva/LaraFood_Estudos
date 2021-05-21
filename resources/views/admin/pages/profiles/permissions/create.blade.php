@@ -16,7 +16,7 @@
 
     <div class="card">
         <div class="card-header">
-            <form class="form form-inline" action="{{route('profiles.search')}}" method="post">
+            <form class="form form-inline" action="{{route('profiles.permissions.available',$profile->id)}}" method="post">
                 @csrf
                 <input type="text" name="filter" placeholder="Nome:" class="form-control"
                        value="{{$filters['filter']?? ''}}">
